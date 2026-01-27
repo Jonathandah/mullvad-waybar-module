@@ -76,3 +76,15 @@ killall waybar && waybar &
 ```
 
 done!
+
+## Resources
+
+<https://mullvad.net/en>
+
+<https://github.com/Alexays/Waybar>
+
+## Thanks
+
+Thanks to Mullvad for providing a great product!
+
+<https://mullvad.net/en>
