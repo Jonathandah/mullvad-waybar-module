@@ -83,6 +83,6 @@ Thanks to Mullvad for providing a great product!
 
 <https://mullvad.net/en>
 
-And many appreciation to the waybar project as well ofc!
+and many appreciation to the waybar project as well ofc!
 
 <https://github.com/Alexays/Waybar>
