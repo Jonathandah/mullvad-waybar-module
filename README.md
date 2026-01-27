@@ -1,4 +1,4 @@
-# Custom Mullvad module for waybar
+# Custom mullvad vpn module for waybar
 
 ![Green lock](./images/screenshot1.png "Mullvad Waybar Module")
 
