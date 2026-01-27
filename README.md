@@ -77,14 +77,12 @@ killall waybar && waybar &
 
 done!
 
-## Resources
-
-<https://mullvad.net/en>
-
-<https://github.com/Alexays/Waybar>
-
 ## Thanks
 
 Thanks to Mullvad for providing a great product!
 
 <https://mullvad.net/en>
+
+And many appreciation to the waybar project as well ofc!
+
+<https://github.com/Alexays/Waybar>
