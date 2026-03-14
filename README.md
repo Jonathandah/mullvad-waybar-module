@@ -1,51 +1,77 @@
-# Custom mullvad vpn module for waybar
+# Mullvad VPN module for Waybar
 
 ![Green lock](./images/screenshot1.png "Mullvad Waybar Module")
 
-Just needed a simple way to see if I'm connected to Mullvad VPN and what server I'm using, so I made this simple waybar module.
+Just needed a simple way to see if I'm connected to Mullvad VPN and what server I'm using, so I made this simple custom waybar module.
 
 ## Prerequisites
 
-- `mullvad-vpn` or `mullvad-vpn-cli` installed and configured on your system.
+- [mullvad-vpn](https://archlinux.org/packages/?name=mullvad-vpn) or [mullvad-vpn-bin](https://aur.archlinux.org/packages/mullvad-vpn-bin) installed and setup on your system.
 
 ## Getting Started
 
-1. If you haven't already installed mullvad-vpn, you can install from yay with:
+**1. Clone the repo**
 
 ```sh
+git clone git@github.com:Jonathandah/mullvad-waybar-module.git
+```
+
+**2. If you haven't already installed mullvad-vpn, you can install it with yay:**
+
+```sh
+# or mullvad-vpn if you prefer the non-bin version
 yay -S mullvad-vpn-bin
 ```
 
-or if you just want the CLI:
+**3. Copy the mullvad script**
 
 ```sh
-yay -S mullvad-vpn-cli
+#  ~/.config/waybar/scripts/mullvad.sh is just a suggestion, you can put it wherever you like
+mkdir -p ~/.config/waybar/scripts && cp mullvad-waybar-module/mullvad.sh ~/.config/waybar/scripts/mullvad.sh
 ```
 
-2. Add mullvad module to waybar config:
+**4. Add the module to your waybar config**
 
-```sh
-  "custom/mullvad": {
-    "format": "{icon}",
-    "exec": "/your-path-to-the-mullvad-scrpit/mullvad.sh",
-    "interval": 60,
-    "return-type": "json",
-    "on-click": "/your-path-to-the-mullvad-scrpit/mullvad.sh toggle",
-    "on-click-middle": "mullvad-vpn",
-    "on-click-right": "/your-path-to-the-mullvad-scrpit/mullvad.sh reconnect",
-    "format-icons": {
-      "connected": "\uf023",
-      "connecting": "\uf023",
-      "disconnected": "\uf2fc",
-    },
-    "tooltip": true,
+Paste the module into your `~/.config/waybar/config.jsonc`
+
+```jsonc
+"custom/mullvad": {
+  "format": "{icon}",
+  "exec": "~/.config/waybar/scripts/mullvad.sh",
+  "interval": 60,
+  "return-type": "json",
+  "on-click": "~/.config/waybar/scripts/mullvad.sh toggle",
+  "on-click-middle": "mullvad-vpn",
+  "on-click-right": "~/.config/waybar/scripts/mullvad.sh reconnect",
+  "format-icons": {
+    "connected": "\uf023",
+    "connecting": "\uf023",
+    "disconnected": "\uf2fc",
   },
-
+  "tooltip": true,
+},
 ```
 
-3. Add mullvad module styling to waybar style.css:
+> [!NOTE]
+> Adjust the `exec` and `on-click` paths if you placed the script somewhere else.
+
+Then add `"custom/mullvad"` to your `modules-left`, `modules-center`, or `modules-right` array to use it.
+
+```jsonc
+  "modules-left": [],
+  "modules-center": [],
+  "modules-right": ["custom/mullvad"]
+```
+
+**5. Append the styles to your waybar style.css**
+
+```sh
+#  ~/.config/waybar/style.css is just a suggestion, you can put it wherever you like
+cat mullvad-waybar-module/style.css >> ~/.config/waybar/style.css
+```
 
 ```css
+@define-color error #F96184;
 @define-color warning #F6B016;
 @define-color success #01D38F;
 
@@ -67,9 +93,7 @@ yay -S mullvad-vpn-cli
 }
 ```
 
-4. Put the script wherever you store your waybar scripts
-
-5. Restart waybar
+**6. Restart waybar**
 
 ```sh
 killall waybar && waybar &
@@ -86,3 +110,7 @@ Thanks to Mullvad for providing a great product!
 and many appreciation to the waybar project as well ofc!
 
 <https://github.com/Alexays/Waybar>
+
+## Contributing
+
+Contributions are welcome! Please submit pull requests or open issues for any suggestions, bug reports, or improvements.
